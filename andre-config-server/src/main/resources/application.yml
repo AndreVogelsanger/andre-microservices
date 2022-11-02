@@ -10,8 +10,6 @@ spring:
           git:
             uri: https://github.com/AndreVogelsanger/andre-config-server
             default-label: main
-            #username: andrevog2@hotmail.com
-            #password: 'andrevog2@'
             search-paths:
               - 'greeting-service*'
 
