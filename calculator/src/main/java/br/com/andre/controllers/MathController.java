@@ -4,6 +4,7 @@ import br.com.andre.SimpleMath.SimpleMath;
 import br.com.andre.exception.UnsuportedMathOperationException;
 import br.com.andre.validacao.Validacao;
 import lombok.SneakyThrows;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import static br.com.andre.validacao.Validacao.*;
@@ -11,8 +12,8 @@ import static br.com.andre.validacao.Validacao.*;
 @RestController
 public class MathController {
 
-
-    private SimpleMath simpleMath = new SimpleMath();
+    @Autowired
+    SimpleMath simpleMath;
 
     @SneakyThrows
     //@RequestMapping(value = "/sum/{numberOne}/{numbertwo}", method = RequestMethod.GET)
@@ -24,8 +25,8 @@ public class MathController {
         if (!isNumeric(numberOne) || !isNumeric(numbertwo)) {
             throw new UnsuportedMathOperationException("Please set a numeric value!");
         }
-            return simpleMath.sum(convertToDouble(numberOne), convertToDouble(numbertwo));
-        }
+        return simpleMath.sum(convertToDouble(numberOne), convertToDouble(numbertwo));
+    }
 
     @SneakyThrows
     //@RequestMapping(value = "/sum/{numberOne}/{numbertwo}", method = RequestMethod.GET)
